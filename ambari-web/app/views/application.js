@@ -27,6 +27,9 @@ App.ApplicationView = Em.View.extend({
   }.property('App.router.mainViewsController.visibleAmbariViews.[]', 'App.router.loggedIn'),
 
   didInsertElement: function () {
+    var body = $(document.body);
+    document.body.style.backgroundImage="url('')"; //改变背景图片
+
     // on 'Enter' pressed, trigger modal window primary button if primary button is enabled(green)
     // on 'Esc' pressed, close the modal
     $(document).keydown(function (event) {

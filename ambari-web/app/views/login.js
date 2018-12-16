@@ -22,6 +22,18 @@ var App = require('app');
 App.LoginView = Em.View.extend({
 
   templateName: require('templates/login'),
+
+  didInsertElement : function() {
+
+    this.initFunction();
+
+  },
+
+  initFunction : function() {
+    var body = $(document.body);
+    document.body.style.backgroundImage="url('/img/login.png')"; //改变背景图片
+  },
+
   loginTextField: Em.TextField.extend({
     didInsertElement: function(){
       this._super();

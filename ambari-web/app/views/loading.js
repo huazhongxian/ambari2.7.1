@@ -21,5 +21,14 @@ var App = require('app');
 App.LoadingView = Em.View.extend({
   tagName: 'h2',
   classNames: ['col-md-9', 'align-center'],
-  template: Ember.Handlebars.compile('{{t common.loading.eclipses}}')
+  template: Ember.Handlebars.compile('{{t common.loading.eclipses}}'),
+  didInsertElement : function() {
+    this.initFunction();
+  },
+
+  initFunction : function() {
+    var body = $(document.body);
+    document.body.style.backgroundImage="url('/img/logo.png')"; //改变背景图片
+  }
+
 });

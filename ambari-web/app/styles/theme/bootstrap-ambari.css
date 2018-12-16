@@ -797,7 +797,7 @@ input.radio:checked + label:after {
   transition: width 0.5s ease-out;
 }
 .navigation-bar-container ul.nav.side-nav-header li.navigation-header {
-  background: #313d54;
+  background: #1f437a;
   padding: 15px 5px 15px 25px;
   height: 55px;
 }
@@ -821,11 +821,10 @@ input.radio:checked + label:after {
   font-weight: normal;
   font-style: normal;
   line-height: 1;
-  color: #333;
   font-size: 20px;
   width: 55px;
   display: inline;
-  color: #b8bec4;
+  color: #FFF;
   padding: 0 8px 0 10px;
 }
 .navigation-bar-container ul.nav.side-nav-header li.navigation-header .btn-group span.toggle-icon {

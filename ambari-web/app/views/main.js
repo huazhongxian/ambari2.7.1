@@ -20,5 +20,13 @@
 var App = require('app');
 
 App.MainView = Em.View.extend({
-  templateName:require('templates/main')
+  templateName:require('templates/main'),
+  didInsertElement : function() {
+    this.initFunction();
+  },
+
+  initFunction : function() {
+    var body = $(document.body);
+    document.body.style.backgroundImage="url('')"; //改变背景图片
+  }
 });
