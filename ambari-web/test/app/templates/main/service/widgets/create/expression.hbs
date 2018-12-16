@@ -1,0 +1,70 @@
+{{!
+* Licensed to the Apache Software Foundation (ASF) under one
+* or more contributor license agreements.  See the NOTICE file
+* distributed with this work for additional information
+* regarding copyright ownership.  The ASF licenses this file
+* to you under the Apache License, Version 2.0 (the
+* "License"); you may not use this file except in compliance
+* with the License.  You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+}}
+
+<div class="actions-field row">
+  {{view App.AddMetricExpressionView class="add-metric-menu col-md-2"}}
+  <div class="col-md-2">
+    <div class="btn-group add-operator">
+      <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">
+        {{t dashboard.widgets.wizard.step2.newOperator}}
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        {{#each operator in view.OPERATORS}}
+          <li><a href="#" {{action addOperator operator target="view"}}>{{operator}}</a></li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-7 row add-number">
+    <div class="input-group col-md-5">
+      {{view App.AddNumberExpressionView valueBinding="view.numberValue" class="form-control col-md-3"}}
+      <div class="input-group-btn">
+        <button class="btn btn-default" {{action addNumber target="view"}} {{bindAttr disabled="view.isNumberValueInvalid"}}>{{t dashboard.widgets.wizard.step2.newNumber}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{#if view.isInvalid}}
+  <div class="alert alert-error">
+    Invalid expression!
+    {{#if view.isInvalidTextfield}}
+      Only numbers or operators are allowed in this field.
+    {{/if}}
+  </div>
+{{/if}}
+<div class="col-md-12 metric-field">
+  {{#if view.expression.isRemovable}}
+      <a {{action removeExpression view.expression target="controller"}} class="remove-link"><i class="glyphicon glyphicon-trash"></i></a>
+  {{/if}}
+  {{#if view.expression.data.length}}
+    {{#each element in view.expression.data}}
+      <div class="metric-instance" {{bindAttr id="element.id"}}>{{element.name}}
+        <a href="#" {{action removeElement element target="view"}}><i class="glyphicon glyphicon-remove"></i></a>
+      </div>
+    {{/each}}
+    <div class="add-item-input">
+      {{view App.InputCursorTextfieldView parentViewBinding="view"}}
+    </div>
+  {{else}}
+    <div class="add-item-input">
+      {{view App.InputCursorTextfieldView parentViewBinding="view"}}
+    </div>
+    <div class="placeholder">{{t dashboard.widgets.wizard.step2.addMetrics}}</div>
+  {{/if}}
+</div>

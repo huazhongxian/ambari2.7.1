@@ -1,0 +1,168 @@
+{{!
+* Licensed to the Apache Software Foundation (ASF) under one
+* or more contributor license agreements.  See the NOTICE file
+* distributed with this work for additional information
+* regarding copyright ownership.  The ASF licenses this file
+* to you under the Apache License, Version 2.0 (the
+* "License"); you may not use this file except in compliance
+* with the License.  You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+}}
+<div id="assign-masters" class="wizard-content col-md-9">
+{{#if view.showTitle}}
+  <h4 class="step-title">{{view.title}}</h4>
+{{/if}}
+  <p class="step-description">
+    {{{view.alertMessage}}}
+  </p>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {{#each msg in controller.generalErrorMessages}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+      {{#each msg in controller.generalWarningMessages}}
+          <div class="alert alert-warning">{{msg}}</div>
+      {{/each}}
+      {{#if controller.isLoaded}}
+        <div class="assign-masters row">
+          <div class="select-hosts col-md-8">
+            <div class="row col-md-12">
+              {{#if showCurrentHost}}
+                <div class="col-md-12 control-group mlc">
+                  <div class="row">
+                    <div class="col-md-4"><span class="pull-right control-label">{{t services.reassign.step2.currentHost}}</span>
+                    </div>
+                    <div class="col-md-8"><span>{{currentHostId}}</span></div>
+                  </div>
+                </div>
+              {{/if}}
+              <div class="clearfix"></div>
+              <div class="row">
+                <div class="col-md-12 control-group">
+                  <form class="form-horizontal" autocomplete="off">
+                    <!-- View for array controller -->
+                    {{#each controller.additionalHostsList}}
+                      <div class="row additional-hosts-list">
+                        <div class="col-md-5">
+                          <label class="pts pull-right">
+                            {{label}}
+                          </label>
+                        </div>
+                        <div class="col-md-7 host-cell">
+                          {{host}}
+                        </div>
+                      </div>
+                    {{/each}}
+                    {{#each servicesMastersToShow}}
+                      <div class="row">
+                        <div class="col-md-5">
+                          <div class="control-group">
+                            <label class="pts pull-right">
+                              {{#if showCurrentPrefix}}
+                                {{t common.current}}
+                              {{/if}}
+                              {{#if showAdditionalPrefix}}
+                                {{t common.additional}}
+                              {{/if}}
+                              {{display_name}}:
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-7">
+                          {{#if isServiceCoHost}}
+                            <div class="hostName">
+                              {{selectedHost}}<i class="glyphicon glyphicon-asterisks">&#10037;</i>
+                            </div>
+                          {{else}}
+                            <div {{bindAttr class="errorMessage:error: warnMessage:warning: :form-group"}}>
+                              {{#if view.shouldUseInputs}}
+                                {{view App.InputHostView
+                                componentBinding="this"
+                                disabledBinding="isInstalled" }}
+                              {{else}}
+                                {{view App.SelectHostView
+                                componentBinding="this"
+                                disabledBinding="isInstalled"
+                                optionValuePath="content.host_name"
+                                optionLabelPath="content.host_info" }}
+                              {{/if}}
+                              {{#if showAddControl}}
+                                {{view App.AddControlView componentNameBinding="component_name"}}
+                              {{/if}}
+                              {{#if showRemoveControl}}
+                                {{view App.RemoveControlView componentNameBinding="component_name" serviceComponentIdBinding="serviceComponentId"}}
+                              {{/if}}
+
+                              <span rel="popover" title="Warning" {{bindAttr data-content="warnMessage"}}>
+                                {{#if warnMessage}}
+                                  <i class="glyphicon glyphicon-warning-sign"></i>
+                                {{/if}}
+                              </span>
+                              <span rel="popover" title="Error" {{bindAttr data-content="errorMessage"}}>
+                                {{#if errorMessage}}
+                                  <i class="glyphicon glyphicon-exclamation-sign"></i>
+                                {{/if}}
+                              </span>
+                            </div>
+                          {{/if}}
+                        </div>
+                      </div>
+                    {{/each}}
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="host-assignments col-md-4">
+            {{#each masterHostMapping}}
+              <div class="mapping-box">
+                <div class="hostString"><span>{{hostInfo}}</span></div>
+                {{#each masterServicesToDisplay}}
+                  <span {{bindAttr class="isInstalled:assigned-service:new-service :service-component :label"}}>{{display_name}}</span>
+                {{/each}}
+              </div>
+            {{/each}}
+
+            {{#if remainingHosts}}
+              <div class="remaining-hosts">
+                <span><strong>{{remainingHosts}}</strong> {{t installer.step5.attention}}</span></div>
+            {{/if}}
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      {{else}}
+        {{view App.SpinnerView}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+<div class="wizard-footer col-md-12">
+  <div class="btn-area">
+    {{#if view.isBackButtonVisible}}
+      <button type="button" class="btn btn-default pull-left installer-back-btn" {{bindAttr disabled="App.router.btnClickInProgress"}} {{action back}}>
+        &larr; {{t common.back}}
+        {{#if App.router.backBtnClickInProgress}}
+          {{view App.SpinnerView tagName="span" classNames="service-button-spinner"}}
+        {{/if}}
+      </button>
+    {{/if}}
+    <button type="button" class="btn btn-success pull-right" {{bindAttr disabled="nextButtonDisabled"}} {{action submit target="controller"}}>
+      {{#if App.router.nextBtnClickInProgress}}
+        {{view App.SpinnerView tagName="span" classNames="service-button-spinner"}}
+      {{/if}}
+      {{view.acceptButtonText}}
+    </button>
+    {{#if view.isCancelButtonVisible}}
+      <button class="btn btn-default pull-right mrm" {{action onCancel target="controller"}}>{{t common.cancel}}</button>
+    {{/if}}
+  </div>
+</div>
