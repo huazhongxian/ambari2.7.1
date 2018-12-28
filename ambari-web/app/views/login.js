@@ -32,6 +32,8 @@ App.LoginView = Em.View.extend({
   initFunction : function() {
     var body = $(document.body);
     document.body.style.backgroundImage="url('/img/login.png')"; //改变背景图片
+
+  //   document.body.style.cssText='height: 100%;min-height: 100%; background-repeat: no-repeat;background-image: url("/img/login.png");background-size: cover;");';
   },
 
   loginTextField: Em.TextField.extend({
