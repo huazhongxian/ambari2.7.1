@@ -971,7 +971,7 @@ input.radio:checked + label:after {
 .navigation-bar-container ul.nav.side-nav-footer li > ul > li > a:hover,
 .navigation-bar-container ul.nav.side-nav-menu li > a:hover,
 .navigation-bar-container ul.nav.side-nav-footer li > a:hover {
-  background: #404351;
+  background: #1b242d;
   cursor: pointer;
   color: #fff;
 }
@@ -1151,7 +1151,7 @@ input.radio:checked + label:after {
 }
 .navigation-bar-container.collapsed ul.nav.side-nav-menu li.active,
 .navigation-bar-container.collapsed ul.nav.side-nav-footer li.active {
-  background: #404351;
+  background: #1b242d;
   cursor: pointer;
 }
 .navigation-bar-container.collapsed ul.nav.side-nav-menu li.active > a,

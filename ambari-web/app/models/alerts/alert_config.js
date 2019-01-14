@@ -209,7 +209,7 @@ App.AlertConfigProperties = {
 
   Description: App.AlertConfigProperty.extend({
     name: 'description',
-    label: 'Description',
+    label: '描述',
     displayType: 'textArea',
     // todo: check value after API will be provided
     apiProperty: 'description'
@@ -217,9 +217,9 @@ App.AlertConfigProperties = {
 
   Interval: App.AlertConfigProperty.extend({
     name: 'interval',
-    label: 'Check Interval',
+    label: '检查间隔',
     displayType: 'textField',
-    unit: 'Minute',
+    unit: '分钟',
     colWidth: 'col-md-4',
     apiProperty: 'interval',
     isValid: function () {

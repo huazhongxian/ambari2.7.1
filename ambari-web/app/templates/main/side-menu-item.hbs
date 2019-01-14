@@ -32,7 +32,7 @@
       <span {{bindAttr class=":navigation-icon view.content.iconClass"}}></span>
       <span class="navigation-menu-item">{{{unbound view.content.label}}}</span>
     </a>
-    <ul class="admin-submenu sub-menu nav nav-pills nav-stacked">
+    <ul class="admin-submenu sub-menu nav nav-pills nav-stacked" style=" background-color: #1b242d!important; ">
       {{#each category in view.dropdownCategories}}
         {{#view view.AdminDropdownItemView itemBinding="category.name"}}
           <a {{bindAttr href="category.href"}} {{action "goToCategory" category.url target="view"}}>{{category.label}}</a>

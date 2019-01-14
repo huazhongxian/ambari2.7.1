@@ -842,7 +842,7 @@ Em.I18n.translations = {
  'installer.step4.hcfs.displayName': 'a Hadoop Compatible File System',
  'installer.step4.limitedFunctionality.popup.header': '警告',
  'installer.step4.ambariMetricsCheck.popup.header': '功能有警告',
- 'installer.step4.ambariMetricsCheck.popup.body': '大数据平台指标从集群中收集指标,并使其可用于大数据平台。如果不安装Ambari Metrics服务,指标将无法从Ambari访问。你确定你想不Ambari指标继续?',
+ 'installer.step4.ambariMetricsCheck.popup.body': '大数据平台指标从集群中收集指标,并使其可用于大数据平台。如果不安装Metrics服务,指标将无法从Ambari访问。你确定你想不Ambari指标继续?',
  'installer.step4.ambariRangerInfraCheck.popup.header': 'Infra Solr',
  'installer.step4.ambariRangerInfraCheck.popup.body': 'In order for Ranger to work, Solr is required. Either select Infra Solr to be added to the cluster, or ensure you configure your own during the Customize Services step.',
  'installer.step4.ambariAtlasInfraCheck.popup.header': 'Infra Solr',

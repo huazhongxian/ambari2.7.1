@@ -177,23 +177,23 @@ App.MainAlertDefinitionDetailsView = App.TableView.extend({
       },
       {
         value: 'OK',
-        label: 'OK'
+        label: '正常'
       },
       {
         value: 'WARNING',
-        label: 'WARNING'
+        label: '警告'
       },
       {
         value: 'CRITICAL',
-        label: 'CRITICAL'
+        label: '严重'
       },
       {
         value: 'UNKNOWN',
-        label: 'UNKNOWN'
+        label: '未知'
       },
       {
         value: 'PENDING',
-        label: 'NONE'
+        label: '无'
       }
     ],
     onChangeValue: function () {
